@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody
 class Auth(val userService: UserService) {
 
     @PostMapping("login")
-    fun login(@RequestBody loginDto: LoginDto) {
+    fun login(@RequestBody loginDto: LoginDto){
 
     }
 
