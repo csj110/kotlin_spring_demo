@@ -1,9 +1,10 @@
 package com.example.demo.repository
 
-import com.example.demo.entity.User
+import com.example.demo.entity.UserEntity
+import org.springframework.data.domain.Example
 import org.springframework.data.jpa.repository.JpaRepository
 import java.util.*
 
-interface UserRepo : JpaRepository<User, Long> {
-    override fun findById(id: Long): Optional<User>
+interface UserRepo : JpaRepository<UserEntity, Long> {
+    fun findByPhone(phone:String) :Optional<UserEntity>
 }

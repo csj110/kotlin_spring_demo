@@ -12,7 +12,10 @@ class RedisConfig {
     fun redisTemplate(factory:RedisConnectionFactory) :RedisTemplate<String,String>{
         val template=RedisTemplate<String,String>()
         template.setConnectionFactory(factory)
-        template.stringSerializer= StringRedisSerializer()
+        val serializer=StringRedisSerializer()
+        template.keySerializer=serializer
+        template.valueSerializer=serializer
+        template.stringSerializer= serializer
         return  template
     }
 }

@@ -6,11 +6,10 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-class User (
+class UserEntity (
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         val id:Long=-1,
-        val name:String="",
         val phone:String=""
 )
 
