@@ -1,7 +1,7 @@
 server:
   port: 3000
   servlet:
-    context-path: /api
+    context-path: /api/
 
 spring:
   datasource:
@@ -24,4 +24,4 @@ spring:
 
 jwt:
   secret: fagagdasg15a4t5a15t4a5t45a
-  expireTime: 1*60
+  expireTime: 1*60*60*1000
