@@ -18,9 +18,7 @@ class UserResolver(val userRepo: UserRepo) : HandlerMethodArgumentResolver {
     }
 
     override fun resolveArgument(parameter: MethodParameter, mavContainer: ModelAndViewContainer?, webRequest: NativeWebRequest, binderFactory: WebDataBinderFactory?): UserEntity {
-        val id = webRequest.getNativeRequest(HttpServletRequest::class.java)?.getAttribute("id").toString().toLong()
-        val a = userRepo.findById(id).orElse(UserEntity()).phone
-        print(a)
+        val id = webRequest.getNativeRequest(HttpServletRequest::class.java)?.getAttribute("userId").toString().toLong()
         return userRepo.findById(id).orElseThrow { Exception("user does not exist") }
     }
 }
