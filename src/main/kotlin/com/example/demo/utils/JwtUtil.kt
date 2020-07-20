@@ -7,6 +7,7 @@ import com.example.demo.entity.UserEntity
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.util.*
+import kotlin.Long as Long
 
 @Component
 class JwtUtil(@Value("\${jwt.secret}") val secret: String) {
@@ -20,5 +21,5 @@ class JwtUtil(@Value("\${jwt.secret}") val secret: String) {
         return JWT.create().withClaim("id", user.id).withIssuedAt(createTime).withExpiresAt(expireTime).sign(Algorithm.HMAC256(secret))
     }
 
-    fun validateToken(token: String): Long = jwtVerifier.verify(token).getClaim("id").toString().toLong()
+    fun validateToken(token: String): Long =jwtVerifier.verify(token).getClaim("id").asLong().or(0)
 }

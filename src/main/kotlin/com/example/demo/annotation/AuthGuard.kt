@@ -1,7 +1,7 @@
 package com.example.demo.annotation
 
 
-@Target(AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.FUNCTION,AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented
-annotation class AuthGuard
+annotation class AuthGuard(val value:String="")

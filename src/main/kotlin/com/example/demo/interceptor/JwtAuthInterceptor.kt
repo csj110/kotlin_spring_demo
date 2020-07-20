@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse
 @Component
 class JwtAuthInterceptor( val jwtUtil: JwtUtil) : HandlerInterceptor {
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
-        val authHeaderArray = request.getHeader("Authentication").split(" ")
+        val authHeaderArray = request.getHeader("Authorization").split("Bearer ")
         if (authHeaderArray.size != 2) {
-            response.sendError(401, "not authenticated")
+            response.sendError(401, "need auth token")
             return false
         }
         val id= jwtUtil.validateToken(authHeaderArray[1])

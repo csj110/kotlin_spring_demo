@@ -14,9 +14,7 @@ class CaptchaService(val redisTemplate: RedisTemplate<String, String>) {
     }
 
     fun validateCode(phone: String, code: String, type: String = "au"): Boolean {
-        println(code)
         val value = redisTemplate.opsForValue().get("${phone}:${type}")
-        println(value)
         return value == code
     }
 

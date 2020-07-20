@@ -12,15 +12,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 @Configuration
 class WebConfig(val jwtAuthInterceptor: JwtAuthInterceptor,val userResolver: UserResolver) : WebMvcConfigurer {
 
-//    override fun addInterceptors(registry: InterceptorRegistry) {
-//        registry.addInterceptor(jwtAuthInterceptor)
-//                .excludePathPatterns("/auth/login/*")
-//                .excludePathPatterns("/auth/captcha/*")
-//        super.addInterceptors(registry)
-//    }
+    override fun addInterceptors(registry: InterceptorRegistry) {
+        registry.addInterceptor(jwtAuthInterceptor)
+                .addPathPatterns(listOf("/user/*"))
+                .excludePathPatterns(listOf("/auth/*"))
+        super.addInterceptors(registry)
+    }
 
     override fun addArgumentResolvers(resolvers: MutableList<HandlerMethodArgumentResolver>) {
-        resolvers.plus(userResolver)
+        resolvers.add(userResolver)
         super.addArgumentResolvers(resolvers)
     }
 }

@@ -7,7 +7,7 @@ class UserEntity (
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         val id:Long=-1,
-        @Column
+        @Column(nullable = false,length = 11)
         val phone:String=""
 )
 

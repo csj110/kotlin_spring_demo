@@ -12,13 +12,15 @@ import org.springframework.web.method.support.ModelAndViewContainer
 import javax.servlet.http.HttpServletRequest
 
 @Service
-class UserResolver (val userRepo: UserRepo):HandlerMethodArgumentResolver {
+class UserResolver(val userRepo: UserRepo) : HandlerMethodArgumentResolver {
     override fun supportsParameter(parameter: MethodParameter): Boolean {
         return parameter.hasParameterAnnotation(CurrentUser::class.java) && parameter.parameterType.isAssignableFrom(UserEntity::class.java)
     }
 
     override fun resolveArgument(parameter: MethodParameter, mavContainer: ModelAndViewContainer?, webRequest: NativeWebRequest, binderFactory: WebDataBinderFactory?): UserEntity {
-        val id:Long=(webRequest as HttpServletRequest).getParameter("id").toLong();
-        return userRepo.findById(id).orElseThrow()
+        val id = webRequest.getNativeRequest(HttpServletRequest::class.java)?.getAttribute("id").toString().toLong()
+        val a = userRepo.findById(id).orElse(UserEntity()).phone
+        print(a)
+        return userRepo.findById(id).orElseThrow { Exception("user does not exist") }
     }
 }
