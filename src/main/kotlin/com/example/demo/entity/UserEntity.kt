@@ -5,13 +5,16 @@ import javax.persistence.*
 @Entity(name = "user")
 class UserEntity(
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long = -1,
-        @Column(nullable = false, length = 11)
+        @Column(nullable = false, length = 11,unique = true)
         val phone: String = "",
 
         @OneToMany()
         @JoinColumn(name = "author_id", referencedColumnName = "id")
-        val opus: List<ArticleEntity> = listOf()
+        val opus: List<ArticleEntity> = listOf(),
+        @OneToMany
+        @JoinColumn(name = "commentator_id",referencedColumnName = "id")
+        val comments:List<ArticleCommentEntity> = listOf()
 )
 

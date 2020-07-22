@@ -9,7 +9,7 @@ import javax.persistence.*
 @Entity(name = "article")
 class ArticleEntity(
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long = -1,
         @Column(nullable = false)
         val title: String = "",
