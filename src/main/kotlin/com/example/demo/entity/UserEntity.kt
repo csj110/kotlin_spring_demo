@@ -1,11 +1,12 @@
 package com.example.demo.entity
 
+import com.fasterxml.jackson.annotation.JsonView
 import javax.persistence.*
 
 @Entity(name = "user")
 class UserEntity(
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long = -1,
         @Column(nullable = false, length = 11,unique = true)
         val phone: String = "",

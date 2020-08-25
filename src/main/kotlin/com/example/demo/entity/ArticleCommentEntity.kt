@@ -7,7 +7,7 @@ import javax.persistence.*
 @Entity(name = "article_comment")
 class ArticleCommentEntity(
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long = -1,
         @Column(nullable = false)
         val comment: String = "",
