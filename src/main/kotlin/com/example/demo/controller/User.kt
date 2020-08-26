@@ -15,7 +15,7 @@ class User(val userRepo: UserRepo) {
 
     @GetMapping("info")
     fun getPhoneNumber(@CurrentUser user: UserEntity): ResObj {
-        return ResObj(data = user.phone)
+        return ResObj(data = user)
     }
 
     @GetMapping("all")

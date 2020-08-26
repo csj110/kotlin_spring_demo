@@ -21,6 +21,8 @@ class UserResolver(val jwtUtil: JwtUtil,val userRepo: UserRepo) : HandlerMethodA
     override fun resolveArgument(parameter: MethodParameter, mavContainer: ModelAndViewContainer?, webRequest: NativeWebRequest, binderFactory: WebDataBinderFactory?):UserEntity {
         val request=webRequest.getNativeRequest(HttpServletRequest::class.java) ?: throw Exception("内不出错")
         val id=jwtUtil.validateRequest(request)
-        return userRepo.findById(id).orElseThrow { Exception("user does not exist") }
+        val user:UserEntity=userRepo.findByIdPure(id).orElseThrow { Exception("fa") }
+        println("end of search")
+        return userRepo.findByIdPure(id).orElseThrow { Exception("user does not exist") }
     }
 }
