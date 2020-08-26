@@ -7,7 +7,7 @@ import java.util.*
 import javax.persistence.*
 
 @Entity(name = "article")
-class ArticleEntity(
+data class ArticleEntity(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long = -1,
@@ -19,10 +19,10 @@ class ArticleEntity(
         @UpdateTimestamp
         val updated: Date = Date(),
 
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "author_id", referencedColumnName = "id")
         val author: UserEntity = UserEntity(),
-        @OneToMany
+        @OneToMany(fetch = FetchType.LAZY)
         @JoinColumn(name = "commentFor_id", referencedColumnName = "id")
         val comments: List<ArticleCommentEntity> = listOf()
 )

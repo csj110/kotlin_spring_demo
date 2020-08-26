@@ -13,6 +13,6 @@ class ArticleService(val articleRepo: ArticleRepo) {
     }
 
     fun createNewArticle(articleEntity: ArticleEntity):ArticleEntity{
-        return articleRepo.saveAndFlush(articleEntity)
+        return articleRepo.save(articleEntity)
     }
 }

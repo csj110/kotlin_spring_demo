@@ -15,10 +15,10 @@ class ArticleCommentEntity(
         @CreationTimestamp
         val created: Date = Date(),
 
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "commentFor_id", referencedColumnName = "id")
         val commentFor: ArticleEntity = ArticleEntity(),
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "commentator_id", referencedColumnName = "id")
         val commentator: UserEntity = UserEntity()
 )
