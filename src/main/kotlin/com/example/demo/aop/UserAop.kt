@@ -26,7 +26,7 @@ class UserAop(val jwtUtil: JwtUtil) {
     fun beforeUserCheck(joinPoint: JoinPoint, guard: AuthGuard) {
         print("start aop")
         val request = (RequestContextHolder.currentRequestAttributes() as ServletRequestAttributes).request
-        val id = jwtUtil.validateRequest(request)
+        val id = jwtUtil.extractIdFromRequest(request)
         if (guard.value != "" && id != guard.value.toLong()){
             throw NotAuthorized("user has no access")
         }

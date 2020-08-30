@@ -11,9 +11,6 @@ interface UserRepo : JpaRepository<UserEntity, Long> {
 
     fun findByPhone(phone:String):Optional<UserEntity>
 
-    @Query(name="findByIdPure",nativeQuery = true,value ="select id,phone from user where id = :id")
-    fun findByIdPure(@Param("id") id:Long):Optional<UserEntity>
-
     fun findAllByPhoneStartsWith(phone: String,pageable: Pageable):List<UserEntity>
 
 }

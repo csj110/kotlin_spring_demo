@@ -24,7 +24,7 @@ class JwtUtil(@Value("\${jwt.secret}") val secret: String) {
 
     fun validateToken(token: String): Long =jwtVerifier.verify(token).getClaim("id").asLong().or(0)
 
-    fun validateRequest(request: HttpServletRequest) :Long{
+    fun extractIdFromRequest(request: HttpServletRequest) :Long{
         val authHeaderArray = request.getHeader("Authorization").orEmpty().split("Bearer ")
         if (authHeaderArray.size != 2) {
             throw NotAuthorized("need Bearer Authentication")

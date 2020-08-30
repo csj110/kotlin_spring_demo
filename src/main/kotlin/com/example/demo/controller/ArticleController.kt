@@ -17,6 +17,11 @@ class ArticleController(val articleService: ArticleService) {
         return ResObj(data = article)
     }
 
+    @GetMapping("/author/{id}")
+    fun getArticleByAuthorId(@PathVariable("id") id:Long):ResObj{
+        val articles:List<ArticleEntity> = articleService.getArticleByAuthorId(id)
+        return ResObj(data = articles)
+    }
 
     @PostMapping("")
     fun creteArticle(@RequestBody article: ArticleEntity,@CurrentUser user:UserEntity):ResObj{
